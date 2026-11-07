@@ -1,0 +1,2 @@
+# nbt-aa-tile hook - removed by remove-boot.sh
+[ -f /opt/aa-tile/aa-tile-launcher.sh ] && /bin/sh /opt/aa-tile/aa-tile-launcher.sh </dev/null >/dev/null 2>&1 &
