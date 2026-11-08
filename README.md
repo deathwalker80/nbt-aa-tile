@@ -105,6 +105,19 @@ No BMW files (`text.db`, images, binaries from the head unit). Cosmetics such as
 "n. t. a. (ASIA)" label modify head-unit files and are out of scope here; RRudkinp's `AA-Tile.zip` in issue #55
 handles the label.
 
+## Help wanted
+
+Contributions, test reports and ideas are welcome: open an issue or a pull request here, or join the discussion in
+[NBT-AAD issue #55](https://github.com/Sq00ky/Supra-iDrive6-Android-Auto/issues/55). Open points:
+
+* **Test reports** from other cars and software builds (BMW ID5/ID6, Supra, other MINI models, other `NBTevo_*`
+  versions): car, HU build, nbt-aad version, mode, and the `test<N>.log` from `test-ram.sh`.
+* **Boot start without touching head-unit files.** The NBT-AAD authors prefer added files only; today the boot start
+  needs 2 lines in `start_webserver.sh`. A better hook, or nbt-aad starting aa-tile itself, would remove that.
+* **Phone name and battery on the tile**, as CarPlay shows them. The CarLife device has `DeviceInfo` functions that
+  look like the right place; not tried yet.
+* **Icon and label** of the tile without modifying head-unit files.
+
 ## Licence
 
 PolyForm Noncommercial 1.0.0, see `LICENSE.md` (copied unchanged from NBT-AAD). Required notice:
