@@ -60,8 +60,10 @@ docs/protocol.md             the MOST messages and what the iDrive asks for
 
 ## Usage
 
-Put a folder `nbt-aa-tile` in the root of the USB stick with `aa-tile`, `aa-tile.size` (from the build) and the
-files from `scripts/`. Plug it in, SSH to the head unit, then:
+Download `nbt-aa-tile-5.zip` from [Releases](https://github.com/deathwalker80/nbt-aa-tile/releases) and unzip it in
+the root of the USB stick: it contains the `nbt-aa-tile` folder ready to use (`aa-tile`, `aa-tile.size`, the files
+from `scripts/`, and `SHA256SUMS`). Or build it yourself and put the same files in that folder.
+Plug the stick in, SSH to the head unit, then:
 
 ```sh
 # 1. test from RAM (no mount, nothing installed): Android Auto running and the phone connected
