@@ -1,0 +1,2 @@
+MINI Media/Radio source entry. Put here, same name:
+  carlife_48x48.png      PNG RGBA, exactly 48 x 48, white icon on transparent like the other sources

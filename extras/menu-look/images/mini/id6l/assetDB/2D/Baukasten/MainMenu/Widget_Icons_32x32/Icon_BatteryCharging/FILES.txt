@@ -1,0 +1,3 @@
+OPTIONAL, MINI: the small battery with '?' shown under the tile (the phone battery is unknown).
+  icon_kommunikation_batterie_error.png   PNG RGBA, exactly 32 x 32 (a fully transparent image hides it)
+Note: the HMI uses this icon wherever a phone battery level is unknown, not only under the tile.

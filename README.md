@@ -101,11 +101,16 @@ It writes `out/aa-tile`, `out/aa-tile.size` and `out/aa-tile.sha256`. The progra
 it uses the head unit's own `libc.so.3`, `libsocket.so.3` and `ldqnx.so.2`, and `libsys_dsi_colibry` through `dlopen`.
 No libstdc++ (a statically linked libstdc++ crashes inside the HMI plugin environment, see Keukenrol123522's README).
 
+## Optional extra: labels and images
+
+The tile shows the CarLife entry as it is ("n. t. a. (ASIA)" / "CarLife" and the CarLife icon). The optional extra
+[`extras/menu-look`](extras/menu-look) (`aa-menu-look-1.zip` in Releases) changes the labels to "Android Auto" on the
+head unit itself and, if you add your own PNGs, the images, with a backup of every file and a full restore script.
+Unlike the tile, it **modifies head-unit files**. BMW and MINI paths, sizes and string IDs are in its README.
+
 ## Not included on purpose
 
-No BMW files (`text.db`, images, binaries from the head unit). Cosmetics such as an Android Auto icon or renaming the
-"n. t. a. (ASIA)" label modify head-unit files and are out of scope here; RRudkinp's `AA-Tile.zip` in issue #55
-handles the label.
+No BMW files (`text.db`, images, binaries from the head unit) and no Android Auto logo.
 
 ## Help wanted
 

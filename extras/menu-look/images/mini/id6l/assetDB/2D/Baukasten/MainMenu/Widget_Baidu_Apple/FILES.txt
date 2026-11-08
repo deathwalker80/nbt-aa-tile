@@ -1,0 +1,2 @@
+MINI main-menu tile picture. Put here, same name:
+  global_widget_baidu.png   PNG RGBA, exactly 152 x 152 (colour logo on transparent works well)

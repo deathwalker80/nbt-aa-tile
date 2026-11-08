@@ -1,0 +1,3 @@
+MINI list-menu icons of the entry. Put here, same names:
+  mainmenu_carlife.png   PNG grey+alpha (colour type 4), exactly 36 x 36, white/grey like the other entries
+  seeall_carlife.png     PNG RGBA, exactly 128 x 128

@@ -1,0 +1,5 @@
+BMW main-menu tile (widget CarLifePad). Put here, same names, PNG RGBA, exactly 72 x 378:
+  carlife_inactive.png   tile without focus
+  carlife_selected.png   tile with focus (the HMI's red bar)
+  carlife_touch.png      tile while pressed
+Any subset is fine. For BMW M / BMW i use images/bmwm/... or images/bmwi/... if list-images.sh shows the files there.
