@@ -1,5 +1,5 @@
 #!/bin/sh
-# list-images.sh (aa-menu-look 1) - READ-ONLY. Lists every CarLife / Baidu image of this head unit with its exact
+# list-images.sh (aa-menu-look 2) - READ-ONLY. Lists every CarLife / Baidu image of this head unit with its exact
 # path, size and PNG colour type, so you know which files you can replace and how big they must be.
 #
 #   sh /mnt/umass*/aa-menu-look/list-images.sh <bmw|bmwm|bmwi|mini>

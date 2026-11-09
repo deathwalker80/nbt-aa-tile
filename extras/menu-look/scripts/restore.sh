@@ -1,5 +1,5 @@
 #!/bin/sh
-# restore.sh (aa-menu-look 1) - puts back EVERY file that install.sh replaced (labels and images), byte for byte,
+# restore.sh (aa-menu-look 2) - puts back EVERY file that install.sh replaced (labels and images), byte for byte,
 # from the factory copies in /opt/aa/menu-look-backup, then removes that folder.
 #
 #   sh /mnt/umass*/aa-menu-look/restore.sh      or, without the stick:   sh /opt/aa/menu-look-backup/restore.sh
@@ -22,9 +22,6 @@ while read REL; do
   S="$B/ro/$REL"
   D="$RO/$REL"
   if [ ! -f "$S" ]; then echo "ERROR: backup of $REL missing"; FAIL=1; continue; fi
-  if [ -f "$D" ] && [ "$(size "$D")" = "$(size "$S")" ] && cmp -s "$D" "$S" 2>/dev/null; then
-    echo "already original: $REL"; N=$((N+1)); continue
-  fi
   V="$D.new-$$"
   if [ -f "$D" ]; then mv "$D" "$V" || { echo "ERROR: cannot rename $D. Did you run  mount -o remount rw /net/hu-omap/fs/sda0 ?"; FAIL=1; continue; }; fi
   if cp "$S" "$D" && [ "$(size "$D")" = "$(size "$S")" ]; then

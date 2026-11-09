@@ -1,5 +1,5 @@
 #!/bin/sh
-# install.sh (aa-menu-look 1) - makes the CarLife entry look like Android Auto. Optional extra of nbt-aa-tile.
+# install.sh (aa-menu-look 2) - makes the CarLife entry look like Android Auto. Optional extra of nbt-aa-tile.
 #
 #   sh /mnt/umass*/aa-menu-look/install.sh <bmw|bmwm|bmwi|mini> ["Label"]
 #
@@ -39,7 +39,7 @@ LIST=/dev/shmem/aa-menu-look-images.txt
 FOUND=/dev/shmem/aa-menu-look-found.txt
 size() { Z=$(wc -c < "$1" 2>/dev/null); echo $Z; }
 
-echo "aa-menu-look 1: brand $BRAND, label \"$LABEL\""
+echo "aa-menu-look 2: brand $BRAND, label \"$LABEL\""
 
 # ---------------- checks (nothing is changed here) ----------------
 if [ ! -f "$T" ]; then echo "ERROR: $T not found: wrong brand for this head unit? Nothing changed."; exit 1; fi
@@ -100,7 +100,7 @@ if [ $LABELS = 0 ] && [ $N_IMG = 0 ]; then echo "Nothing to do."; exit 0; fi
 # ---------------- changes ----------------
 mkdir -p "$B/ro" || { echo "ERROR: cannot write in /opt/aa. Did you run  mount -o remount rw /net/hu-omap/fs/sda0 ?"; exit 1; }
 echo "$BRAND" > "$B/brand"
-touch "$MAN"
+: >> "$MAN"
 cp "$K/restore.sh" "$B/restore.sh" 2>/dev/null
 
 # backup <rel>: factory copy, once
