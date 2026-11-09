@@ -104,7 +104,7 @@ No libstdc++ (a statically linked libstdc++ crashes inside the HMI plugin enviro
 ## Optional extra: labels and images
 
 The tile shows the CarLife entry as it is ("n. t. a. (ASIA)" / "CarLife" and the CarLife icon). The optional extra
-[`extras/menu-look`](extras/menu-look) (`aa-menu-look-1.zip` in Releases) changes the labels to "Android Auto" on the
+[`extras/menu-look`](extras/menu-look) (`aa-menu-look-2.zip` in Releases) changes the labels to "Android Auto" on the
 head unit itself and, if you add your own PNGs, the images, with a backup of every file and a full restore script.
 Unlike the tile, it **modifies head-unit files**. BMW and MINI paths, sizes and string IDs are in its README.
 

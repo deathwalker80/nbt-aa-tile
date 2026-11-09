@@ -37,7 +37,7 @@ same file exists on the head unit. The `FILES.txt` in each folder says what goes
 
 ## Usage
 
-Unzip `aa-menu-look-1.zip` in the root of the FAT USB stick (it creates the `aa-menu-look` folder; the head unit
+Unzip `aa-menu-look-2.zip` in the root of the FAT USB stick (it creates the `aa-menu-look` folder; the head unit
 cannot create folders on the stick). Add your images if you want them. SSH to the head unit, then:
 
 ```sh
