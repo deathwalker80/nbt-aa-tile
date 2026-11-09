@@ -6,11 +6,11 @@ Android Auto tile in the **main menu of BMW / MINI NBT EVO (ID5/ID6)** head unit
 It uses the head unit's own CarLife entry: the tile appears on the home screen (and as a source in Media/Radio),
 and pressing it brings Android Auto to the front. Nothing on the head unit or in nbt-aad is modified to show it.
 
-**Status:** the program (build 4, Italian names) was tested on a MINI F60 (`NBTevo_Y21432J`, nbt-aad 1.9.20) from RAM
-in both modes; RRudkinp ran the boot kit on his bench unit (tile shown while Android Auto is connected, gone when
-the phone's WiFi is off). **Build 5** in this repo is the same code with English
-names, paths and messages (the compiled functions are instruction-for-instruction identical to build 4, only string
-addresses differ); it has not been run in a car yet. Use at your own risk.
+**Status: build 5 is installed at boot and working in a car** - MINI F60 (`NBTevo_Y21432J`, nbt-aad
+1.9.38), started at every boot with `install-boot.sh follow` since 9 November 2026: tile shown while Android Auto is
+connected, press brings Android Auto to the front. Before that, build 5 was run from RAM on the same car (`follow`
+and `always`), build 4 (same code, Italian names) from RAM with nbt-aad 1.9.20, and RRudkinp ran the boot kit on his
+bench unit. Other cars and HU builds: not tested yet, use at your own risk and start with `test-ram.sh`.
 
 ## Credits
 
