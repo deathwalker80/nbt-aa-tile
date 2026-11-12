@@ -10,7 +10,10 @@ and pressing it brings Android Auto to the front. Nothing on the head unit or in
 1.9.38), started at every boot with `install-boot.sh follow` since 9 November 2026: tile shown while Android Auto is
 connected, press brings Android Auto to the front. Before that, build 5 was run from RAM on the same car (`follow`
 and `always`), build 4 (same code, Italian names) from RAM with nbt-aad 1.9.20, and RRudkinp ran the boot kit on his
-bench unit. Other cars and HU builds: not tested yet, use at your own risk and start with `test-ram.sh`.
+bench unit. Also tested by others: BMW G30 (2017, `NBTevo_Y21432J`, nbt-aad v1.9.36-combo) - build 5 from RAM
+and installed at boot with `follow`, tile shown and hidden with the phone, press brings Android Auto to the front
+([#2](https://github.com/deathwalker80/nbt-aa-tile/issues/2)). Other cars and HU builds: not tested yet, use at your
+own risk and start with `test-ram.sh`.
 
 ## Credits
 
@@ -114,8 +117,10 @@ No BMW files (`text.db`, images, binaries from the head unit) and no Android Aut
 
 ## Help wanted
 
-Contributions, test reports and ideas are welcome: open an issue or a pull request here, or join the discussion in
-[NBT-AAD issue #55](https://github.com/Sq00ky/Supra-iDrive6-Android-Auto/issues/55). Open points:
+Contributions, test reports and ideas are welcome: test reports, questions and ideas in
+[Discussions](https://github.com/deathwalker80/nbt-aa-tile/discussions), bugs in Issues, code as a pull request here,
+or join the discussion in [NBT-AAD issue #55](https://github.com/Sq00ky/Supra-iDrive6-Android-Auto/issues/55).
+Open points:
 
 * **Test reports** from other cars and software builds (BMW ID5/ID6, Supra, other MINI models, other `NBTevo_*`
   versions): car, HU build, nbt-aad version, mode, and the `test<N>.log` from `test-ram.sh`.
