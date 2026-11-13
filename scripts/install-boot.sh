@@ -21,6 +21,7 @@ B=/opt/aa-tile/start_webserver.sh.original
 N=/opt/aa-tile/start_webserver.sh.new
 
 if [ ! -d /opt/hmi ]; then echo "ERROR: not in the omap shell (on -f /net/hu-omap/ /bin/sh)"; exit 1; fi
+if [ ! -f /opt/hmi/ID5/data/ro/common/widget/CarLife.pbw ]; then echo "ERROR: this head unit software has no CarLife entry (common/widget/CarLife.pbw): the tile cannot work here"; exit 1; fi
 for f in aa-tile aa-tile-launcher.sh hook.txt; do
   if [ ! -f $S/$f ]; then echo "ERROR: missing $S/$f"; exit 1; fi
 done

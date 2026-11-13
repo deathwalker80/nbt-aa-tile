@@ -14,6 +14,7 @@ U=""
 for d in /mnt/umass*; do if [ -d "$d/nbt-aa-tile" ]; then U=$d; fi; done
 if [ -z "$U" ]; then echo "ERROR: no USB stick with a nbt-aa-tile folder found in /mnt"; exit 1; fi
 if [ ! -d /opt/hmi ]; then echo "ERROR: /opt/hmi not found - are you in the omap shell?"; exit 1; fi
+if [ ! -f /opt/hmi/ID5/data/ro/common/widget/CarLife.pbw ]; then echo "ERROR: this head unit software has no CarLife entry (common/widget/CarLife.pbw): the tile cannot work here"; exit 1; fi
 K="$U/nbt-aa-tile"
 S="$K/aa-tile"
 P=/dev/shmem/aa-tile

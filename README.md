@@ -12,7 +12,8 @@ connected, press brings Android Auto to the front. Before that, build 5 was run 
 and `always`), build 4 (same code, Italian names) from RAM with nbt-aad 1.9.20, and RRudkinp ran the boot kit on his
 bench unit. Also tested by others: BMW G30 (2017, `NBTevo_Y21432J`, nbt-aad v1.9.36-combo) - build 5 from RAM
 and installed at boot with `follow`, tile shown and hidden with the phone, press brings Android Auto to the front
-([#2](https://github.com/deathwalker80/nbt-aa-tile/issues/2)). Other cars and HU builds: not tested yet, use at your
+([#2](https://github.com/deathwalker80/nbt-aa-tile/issues/2)). Does not work: BMW F30 with `NBTevo_L17193I` (no
+CarLife entry in the HMI, see Requirements). Other cars and HU builds: not tested yet, use at your
 own risk and start with `test-ram.sh`.
 
 ## Credits
@@ -44,6 +45,11 @@ Both use the same mechanism and both are credited to RRudkinp.
 * NBT EVO with SSH root access (for example with [Bavarian SSH](https://ssh.bavarian-aa.uk/)).
 * nbt-aad installed and working. aa-tile needs its control port (UDP `127.0.0.1:52790`) and its state file
   (`/dev/shmem/nbt-aad-state`): both are there from 1.8.66 on, and still in the current main branch.
+* Head unit software that contains the CarLife entry: `/opt/hmi/ID5/data/ro/common/widget/CarLife.pbw` must exist
+  (check it in the omap shell with `ls`). The tile only switches on the CarLife entry the HMI already has: it is
+  missing on `NBTevo_L17193I` (BMW F30), so there the tile cannot appear, whatever the nbt-aa-tile or nbt-aad build.
+  Age is not the point: a 2017 G30 with `NBTevo_Y21432J` works. `test-ram.sh` and `install-boot.sh` stop with an
+  error when the file is missing.
 * A FAT USB stick. The head unit cannot create folders on it, so prepare the folder on a PC.
 
 ## Files
