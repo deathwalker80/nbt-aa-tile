@@ -32,12 +32,13 @@ aa-menu-look/
 ```
 
 `images/` mirrors `/opt/hmi/ID5/data/ro/` on the head unit: `images/<path>` replaces `/opt/hmi/ID5/data/ro/<path>`.
-Only `images/<brand>/` and `images/common/` are used, only `.png` files (lower-case extension), and only when the
-same file exists on the head unit. The `FILES.txt` in each folder says what goes there.
+Only `images/<brand>/` and `images/common/` are used (also `images/bmw/` for `bmwm` and `bmwi` since 2.2 and for `mini`
+since 2.3), only `.png`
+files (lower-case extension), and only when the same file exists on the head unit. The `FILES.txt` in each folder says what goes there.
 
 ## Usage
 
-Unzip `aa-menu-look-2.zip` in the root of the FAT USB stick (it creates the `aa-menu-look` folder; the head unit
+Unzip `aa-menu-look-2.3.zip` in the root of the FAT USB stick (it creates the `aa-menu-look` folder; the head unit
 cannot create folders on the stick). Add your images if you want them. SSH to the head unit, then:
 
 ```sh
@@ -84,12 +85,14 @@ compared with the source. Files already identical are skipped.
 ## Labels
 
 `aa-look` changes only the CarLife string IDs, and only where their text is one of: `n. t. a. (ASIA)`, `CarLife`,
-`Baidu CarLife`, `百度 CarLife`, `百度CarLife` (and the capital forms, which get the label in capitals).
+`Baidu CarLife`, `百度 CarLife`, `百度CarLife` (and the capital forms, `百度 CARLIFE` and `百度CARLIFE` included since 2.1, which get the label in capitals).
 
 | Brand | String IDs |
 |---|---|
-| bmw / bmwm / bmwi | 94480 94488 94608 94616 94648 94664 94672 94673 94696 94697 94699 94704 94705 94707 94712 94713 94714 94715 |
-| mini | the same 18 + 95944 96432 96433 |
+| bmw / bmwm / bmwi / mini | 94480 94488 94608 94616 94648 94664 94672 94673 94696 94697 94699 94704 94705 94707 94712 94713 94714 94715 95944 96432 96433 |
+
+Up to aa-menu-look 2 the last three IDs were changed only for `mini`. They are in the `bmwm` database of
+`NBTevo_Y24073J` too (nbt-aa-tile issue #3), so since 2.1 they are changed for every brand.
 
 On a MINI F60 (`NBTevo_Y21432J`, text.db with 35 languages) that is 580 lines in 28 languages. The label must be
 plain ASCII, 1 to 40 characters.
@@ -107,9 +110,11 @@ Same width and height as the original are required. Keep the original's PNG colo
 | `bmw/id6l/widgetasset/CarLifePad/resources/carlife_selected.png` | 72 x 378 RGBA | main-menu tile, focus (red bar) |
 | `bmw/id6l/widgetasset/CarLifePad/resources/carlife_touch.png` | 72 x 378 RGBA | main-menu tile, pressed |
 | `common/assetDB/12_baidu/carlife_48x48/carlife_48x48.png` | 48 x 48 RGBA | Media/Radio source entry |
+| `bmw/id6l/assetDB/Domains/content_preview/cp_baidu_mono/cp_baidu_mono.png` | 540 x 477 RGBA | big picture beside the Media/Radio entry (the dark square with the "C") |
 
-The tile icon is in `widgetasset`, not in `assetDB`. For BMW M / BMW i check with `list-images.sh bmwm|bmwi` and use
-`images/bmwm/...` / `images/bmwi/...` if the files are there.
+The tile icon is in `widgetasset`, not in `assetDB`. BMW M (`NBTevo_Y24073J`, issue #3) has no `CarLifePad` folder under
+`bmwm/`: the tile images stay in `images/bmw/...` and `install.sh bmwm` replaces them from there (since 2.2; up to 2.1
+`images/bmw/` was ignored for `bmwm` and `bmwi`). `list-images.sh bmwm|bmwi` lists the `bmw/` folder too.
 
 ### MINI (NBT EVO ID6)
 
@@ -119,6 +124,7 @@ The tile icon is in `widgetasset`, not in `assetDB`. For BMW M / BMW i check wit
 | `mini/id6l/assetDB/2D/Icons/Icons_MainMenu/36x36/MainMenu_Carlife/mainmenu_carlife.png` | 36 x 36 grey+alpha | list-menu icon (white/grey like the others) |
 | `mini/id6l/assetDB/2D/Icons/Icons_MainMenu/36x36/MainMenu_Carlife/seeall_carlife.png` | 128 x 128 RGBA | overview icon of the entry |
 | `mini/id6l/assetDB/12_baidu/carlife_48x48/carlife_48x48.png` | 48 x 48 RGBA | Media/Radio source entry |
+| `bmw/id6l/assetDB/Domains/content_preview/cp_baidu_mono/cp_baidu_mono.png` | 540 x 477 RGBA | big picture beside the Media/Radio entry (the dark square with the "C"). The MINI HMI takes it from the `bmw/` folder: put yours in `images/bmw/...`, `install.sh mini` uses it since 2.3 |
 | `mini/id6l/assetDB/2D/Baukasten/MainMenu/Widget_Icons_32x32/Icon_BatteryCharging/icon_kommunikation_batterie_error.png` | 32 x 32 RGBA | optional: battery with "?" under the tile (used wherever a phone battery level is unknown; a transparent image hides it) |
 
 Other CarLife images exist (cover art 360 x 360, list pictures 540 x 477, status bar 48 x 48, device list 56 x 48,
