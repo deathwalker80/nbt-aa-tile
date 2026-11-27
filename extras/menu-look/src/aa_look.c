@@ -4,7 +4,7 @@
  *   aa-look labels <brand> <src text.db> <dst text.db> [label]
  *       Writes a copy of the HMI text database where the CarLife entry's labels ("n. t. a. (ASIA)", "CarLife",
  *       "Baidu CarLife") read <label> (default "Android Auto"). Only the CarLife string IDs of <brand> are touched
- *       (bmw/bmwm/bmwi: 18 IDs, mini: 21 IDs), in every language, and only when their text is one of those.
+ *       (21 IDs, the same for bmw/bmwm/bmwi/mini), in every language, and only when their text is one of those.
  *       Refuses unless an untouched rebuild of <src> is byte-exact. The result is verified (every language
  *       decodes, changed languages read back exactly, unchanged ones are byte-identical) before it is written,
  *       and the written file is read back and compared.
@@ -41,7 +41,7 @@ int open(const char*, int, ...); int read(int, void*, size_t); int write(int, co
 #include <unistd.h>
 #endif
 
-#define VERSION "1"
+#define VERSION "1.1"
 typedef unsigned char u8; typedef unsigned short u16; typedef unsigned int u32;
 
 /* ---------- files ---------- */
@@ -305,10 +305,11 @@ static u8* buildDb(const u8* d, u32 n, u8** newPay, u32* newLen, u32* olen) {
     return out;
 }
 
-/* CarLife string IDs (RRudkinp's list for BMW; the MINI database has 3 more) */
+/* CarLife string IDs: RRudkinp's 18, plus 3 more first seen in the MINI database. Since 1.1 the 3 extra ones are
+ * used for every brand: the bmwm database of NBTevo_Y24073J has them too (nbt-aa-tile issue #3). */
 static const char* kIdsBmw[] = { "94480", "94488", "94608", "94616", "94648", "94664", "94672", "94673", "94696", "94697",
                                  "94699", "94704", "94705", "94707", "94712", "94713", "94714", "94715", 0 };
-static const char* kIdsMiniExtra[] = { "95944", "96432", "96433", 0 };
+static const char* kIdsExtra[] = { "95944", "96432", "96433", 0 };
 
 /* old labels, UTF-16 code units */
 static const u16 kOld1[] = { 'n','.',' ','t','.',' ','a','.',' ','(','A','S','I','A',')', 0 };
@@ -321,7 +322,9 @@ static const u16* kOld[] = { kOld1, kOld2, kOld3, kOld4, kOld5, 0 };
 static const u16 kUp1[] = { 'N','.',' ','T','.',' ','A','.',' ','(','A','S','I','A',')', 0 };
 static const u16 kUp2[] = { 'C','A','R','L','I','F','E', 0 };
 static const u16 kUp3[] = { 'B','A','I','D','U',' ','C','A','R','L','I','F','E', 0 };
-static const u16* kOldUp[] = { kUp1, kUp2, kUp3, 0 };
+static const u16 kUp4[] = { 0x767E, 0x5EA6, ' ', 'C','A','R','L','I','F','E', 0 };
+static const u16 kUp5[] = { 0x767E, 0x5EA6, 'C','A','R','L','I','F','E', 0 };
+static const u16* kOldUp[] = { kUp1, kUp2, kUp3, kUp4, kUp5, 0 };
 
 static int isMini;
 static int idIn(const u16* k, u32 kl, const char** list) {
@@ -333,7 +336,7 @@ static int idIn(const u16* k, u32 kl, const char** list) {
     }
     return 0;
 }
-static int idListed(const u16* k, u32 kl) { return idIn(k, kl, kIdsBmw) || (isMini && idIn(k, kl, kIdsMiniExtra)); }
+static int idListed(const u16* k, u32 kl) { return idIn(k, kl, kIdsBmw) || idIn(k, kl, kIdsExtra); }
 static u16 upper(u16 c) { return c >= 'a' && c <= 'z' ? (u16)(c - 32) : c; }
 static int valIs(const u16* v, u32 vl, const u16* s) { u32 j = 0; while (j < vl && s[j] && v[j] == s[j]) j++; return j == vl && !s[j]; }
 
