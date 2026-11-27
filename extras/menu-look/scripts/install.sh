@@ -1,5 +1,5 @@
 #!/bin/sh
-# install.sh (aa-menu-look 2) - makes the CarLife entry look like Android Auto. Optional extra of nbt-aa-tile.
+# install.sh (aa-menu-look 2.3) - makes the CarLife entry look like Android Auto. Optional extra of nbt-aa-tile.
 #
 #   sh /mnt/umass*/aa-menu-look/install.sh <bmw|bmwm|bmwi|mini> ["Label"]
 #
@@ -10,6 +10,9 @@
 # 2. IMAGES (only if you put some): every PNG under images/<brand>/ and images/common/ of this folder replaces the
 #    head-unit file with the SAME path under /opt/hmi/ID5/data/ro/. It must have the same width and height as the
 #    original. Folders left empty = only the labels change.
+#    For bmwm, bmwi and mini also images/bmw/ is used: bmwm/bmwi keep the main-menu tile images only under bmw/
+#    (bmw/id6l/widgetasset/CarLifePad, nbt-aa-tile issue #3), and every brand, MINI included, takes the big picture
+#    beside the Media/Radio entry from bmw/id6l/assetDB/Domains/content_preview/cp_baidu_mono/cp_baidu_mono.png.
 #
 # Every file is backed up once (the factory copy) in /opt/aa/menu-look-backup before it is replaced, and listed in
 # /opt/aa/menu-look-backup/files.txt. restore.sh puts all of them back (also copied to /opt/aa/menu-look-backup/).
@@ -39,7 +42,7 @@ LIST=/dev/shmem/aa-menu-look-images.txt
 FOUND=/dev/shmem/aa-menu-look-found.txt
 size() { Z=$(wc -c < "$1" 2>/dev/null); echo $Z; }
 
-echo "aa-menu-look 2: brand $BRAND, label \"$LABEL\""
+echo "aa-menu-look 2.3: brand $BRAND, label \"$LABEL\""
 
 # ---------------- checks (nothing is changed here) ----------------
 if [ ! -f "$T" ]; then echo "ERROR: $T not found: wrong brand for this head unit? Nothing changed."; exit 1; fi
@@ -58,9 +61,12 @@ rm -f "$X" "$NEW" "$LIST" "$FOUND"
 cp /bin/ls "$X" && cat "$K/aa-look" > "$X" || { echo "ERROR: cannot copy aa-look to RAM"; exit 1; }
 if [ "$(size "$X")" != "$WANT" ]; then echo "ERROR: wrong copy of aa-look in RAM"; rm -f "$X"; exit 1; fi
 
-# images: only images/<brand>/ and images/common/, only PNG, only files that exist on the head unit, same size
+# images: only images/<brand>/ and images/common/ (bmwm, bmwi and mini: images/bmw/ too), only PNG, only files that exist
+# on the head unit, same size
+TOPS="$BRAND common"
+case "$BRAND" in bmwm|bmwi|mini) TOPS="$BRAND bmw common" ;; esac
 : > "$LIST"
-for top in "$BRAND" common; do
+for top in $TOPS; do
   if [ -d "$K/images/$top" ]; then find "$K/images/$top" -type f -name '*.png' >> "$FOUND" 2>/dev/null; fi
 done
 N_IMG=0

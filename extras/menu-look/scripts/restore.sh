@@ -1,5 +1,5 @@
 #!/bin/sh
-# restore.sh (aa-menu-look 2) - puts back EVERY file that install.sh replaced (labels and images), byte for byte,
+# restore.sh (aa-menu-look 2.3) - puts back EVERY file that install.sh replaced (labels and images), byte for byte,
 # from the factory copies in /opt/aa/menu-look-backup, then removes that folder.
 #
 #   sh /mnt/umass*/aa-menu-look/restore.sh      or, without the stick:   sh /opt/aa/menu-look-backup/restore.sh

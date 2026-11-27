@@ -1,5 +1,5 @@
 #!/bin/sh
-# list-images.sh (aa-menu-look 2) - READ-ONLY. Lists every CarLife / Baidu image of this head unit with its exact
+# list-images.sh (aa-menu-look 2.3) - READ-ONLY. Lists every CarLife / Baidu image of this head unit with its exact
 # path, size and PNG colour type, so you know which files you can replace and how big they must be.
 #
 #   sh /mnt/umass*/aa-menu-look/list-images.sh <bmw|bmwm|bmwi|mini>
@@ -7,6 +7,8 @@
 # Run inside the omap shell (on -f /net/hu-omap/ /bin/sh). No mount rw needed. Nothing on the head unit changes.
 # The list is shown and saved on the stick as aa-menu-look/images-found-<brand>.txt.
 # To replace one: put your PNG (same width and height) in aa-menu-look/images/<the same path>.
+# For bmwm, bmwi and mini the bmw/ folder is listed too (main-menu tile images of BMW M / BMW i, and the big
+# Media/Radio picture cp_baidu_mono.png of every brand, are only there).
 
 BRAND="$1"
 case "$BRAND" in
@@ -20,6 +22,8 @@ K="$U/aa-menu-look"
 if [ ! -d /opt/hmi ]; then echo "ERROR: /opt/hmi not found - are you in the omap shell?"; exit 1; fi
 RO=/opt/hmi/ID5/data/ro
 X=/dev/shmem/aa-look
+TOPS="$BRAND common"
+case "$BRAND" in bmwm|bmwi|mini) TOPS="$BRAND bmw common" ;; esac
 OUT="$K/images-found-$BRAND.txt"
 size() { Z=$(wc -c < "$1" 2>/dev/null); echo $Z; }
 
@@ -31,7 +35,7 @@ if [ "$(size "$X")" != "$WANT" ]; then echo "ERROR: wrong copy of aa-look in RAM
 {
   echo "CarLife / Baidu images on this head unit for '$BRAND' (width height colour-type  path under $RO)"
   echo "colour type: 2 = RGB, 4 = grey+alpha, 6 = RGBA"
-  for top in "$BRAND" common; do
+  for top in $TOPS; do
     if [ -d "$RO/$top" ]; then
       find "$RO/$top" -type f \( -iname '*carlife*' -o -iname '*baidu*' -o -iname '*batterie_error*' \) 2>/dev/null | while read F; do
         case "$F" in
