@@ -1,0 +1,4 @@
+Big picture beside the CarLife entry in Media/Radio (every brand, MINI included, reads it from bmw/).
+Put here, same name:
+  cp_baidu_mono.png      PNG RGBA, exactly 540 x 477. The factory image is a dark glossy square with the "C" and a
+                         reflection below, on a transparent background: keep the square where it is (x 104-421, y 63-381).
